@@ -6,7 +6,7 @@ class PlansController < ApplicationController
     end
 
     def show
-        plan = Plan.find_by(params[:id])
+        plan = Plan.all 
         render json: plan
     end
 

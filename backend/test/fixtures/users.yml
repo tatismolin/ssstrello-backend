@@ -2,8 +2,10 @@
 
 one:
   name: MyString
-  references: 
+  username: MyString
+  password: MyString
 
 two:
   name: MyString
-  references: 
+  username: MyString
+  password: MyString

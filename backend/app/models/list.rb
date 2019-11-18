@@ -1,4 +1,4 @@
 class List < ApplicationRecord
-    has_many :plan_lists
-    has_many :plans, through: :plan_lists
+    belongs_to :plan
+    has_many :tasks
 end

@@ -5,8 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+PlanList.destroy_all
+Plan.destroy_all
+List.destroy_all
 
-plan1 = Plan.create(name: "Home")
+plan1 = Plan.create(name: "Plan1")
 
 list1 = List.create(name: "To Do")
 list2 = List.create(name: "Doing")

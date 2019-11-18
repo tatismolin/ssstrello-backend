@@ -2,7 +2,7 @@ class PlanListsController < ApplicationController
 
     def index
         planLists = PlanList.all 
-        render json: planLists, include: [:plan]
+        render json: planLists, include: [:list]
     end
 
     def show

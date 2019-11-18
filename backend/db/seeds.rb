@@ -5,22 +5,30 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-PlanList.destroy_all
+User.destroy_all
 Plan.destroy_all
+UserPlan.destroy_all
 List.destroy_all
+Task.destroy_all
+
+
+user1 = User.create(name: "Tanya", username: "tatismolin", password: "123tasm")
+user2 = User.create(name: "Pasha", username: "pysmooth", password: "123pasm")
 
 plan1 = Plan.create(name: "Plan1")
+plan2 = Plan.create(name: "Plan2")
 
-list1 = List.create(name: "To Do")
-list2 = List.create(name: "Doing")
-list3 = List.create(name: "Done")
+UserPlan.create(user_id: user1.id, plan_id: plan1.id)
+UserPlan.create(user_id: user2.id, plan_id: plan1.id)
 
-PlanList.create(plan_id: plan1.id, list_id: list1.id)
-PlanList.create(plan_id: plan1.id, list_id: list2.id)
-PlanList.create(plan_id: plan1.id, list_id: list3.id)
+plan1list1 = List.create(name: "To Do", plan: plan1)
+plan1list2 = List.create(name: "In Progress", plan: plan1)
+plan1list3 = List.create(name: "Done", plan: plan1)
 
+plan2list1 = List.create(name: "To Do", plan: plan2)
+plan2list2 = List.create(name: "In Progress", plan: plan2)
+plan2list3 = List.create(name: "Done", plan: plan2)
 
-
-
-
+task1 = Task.create(name: "Do Something", priority: 1, list: plan1list1)
+task2 = Task.create(name: "Do Something Else", priority: 2, list: plan2list1)
 

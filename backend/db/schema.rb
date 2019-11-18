@@ -10,21 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_18_011839) do
+ActiveRecord::Schema.define(version: 2019_11_18_223554) do
 
   create_table "lists", force: :cascade do |t|
     t.string "name"
+    t.integer "plan_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "plan_lists", force: :cascade do |t|
-    t.integer "plan_id", null: false
-    t.integer "list_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["list_id"], name: "index_plan_lists_on_list_id"
-    t.index ["plan_id"], name: "index_plan_lists_on_plan_id"
+    t.index ["plan_id"], name: "index_lists_on_plan_id"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -33,6 +26,30 @@ ActiveRecord::Schema.define(version: 2019_11_18_011839) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "plan_lists", "lists"
-  add_foreign_key "plan_lists", "plans"
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.integer "priority"
+    t.integer "list_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["list_id"], name: "index_tasks_on_list_id"
+  end
+
+  create_table "user_plans", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "plan_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_id"], name: "index_user_plans_on_plan_id"
+    t.index ["user_id"], name: "index_user_plans_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "username"
+    t.string "password"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
 end

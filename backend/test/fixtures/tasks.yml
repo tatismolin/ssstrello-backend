@@ -2,8 +2,10 @@
 
 one:
   name: MyString
+  priority: 1
   references: 
 
 two:
   name: MyString
+  priority: 1
   references: 

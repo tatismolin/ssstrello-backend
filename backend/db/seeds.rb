@@ -36,6 +36,5 @@ task4 = Task.create(name: "Book hotel", priority: 1, list: plan1list2)
 task5 = Task.create(name: "Research activities", priority: 1, list: plan1list1)
 task6 = Task.create(name: "Pack for the trip", priority: 1, list: plan1list1)
 
-
-# task2 = Task.create(name: "Do Something Else", priority: 2, list: plan2list1)
+# task7 = Task.create(name: "Do Something Else", priority: 2, list: plan2list1)
 

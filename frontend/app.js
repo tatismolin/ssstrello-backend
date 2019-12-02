@@ -1,21 +1,6 @@
 const planDiv = document.querySelector(".planDiv")
 const listDiv = document.querySelector(".listDiv")
 
-listDiv.addEventListener("ondragover", allowDrop)
-listDiv.addEventListener("ondrop", dropIt)
-
-function allowDrop(event){
-    event.preventDefault()
-}
-
-function dropIt(event) {
-    let id = event.dataTranser.getData("text")
-    let draggableElement = document.getElementById(id)
-    let dropzone = event.target  
-    dropzone.appendChild(draggableElement)
-    event.dataTransfer.clearData()
-}
-
 fetch("http://[::1]:3000/plans")
     .then(response => response.json())
     .then(plans => plans.map(plan => {
@@ -25,15 +10,17 @@ fetch("http://[::1]:3000/plans")
         
         addLists(plan)
     }))
-    
+    let draggedItem = null;
     
     function addLists(plan){
         plan.lists.forEach(list => {
             let listCard = document.createElement("div")
             let h2 = document.createElement("h2")
             let addButton = document.createElement("button")
-            
+
             listCard.classList.add("list")
+            // listCard.setAttribute("id", Math.random().toString(36))
+            
             h2.innerText = list.name
             addButton.classList.add("add")
             addButton.innerText = "➕ Add a new task"
@@ -45,6 +32,35 @@ fetch("http://[::1]:3000/plans")
                 window.location.href = "addTask.html"
             }
 
+            //listCard.classList.add("list")
+            listCard.addEventListener("dragover", (event) => {
+                event.preventDefault()
+            })
+    
+            listCard.addEventListener("dragenter", (event) => {
+                event.preventDefault()
+            })
+    
+            listCard.addEventListener("drop", (event) => {
+                console.log("drop")
+                listCard.append(draggedItem)
+            })
+            
+            // listCard.addEventListener("dragover", dragover_handler)
+            // listCard.addEventListener("drop", drop_handler)
+
+            // function dragover_handler(event) {
+            //     event.preventDefault();
+            //     console.log("dragover")
+            // }
+
+            // function drop_handler(event) {
+            //     event.preventDefault();
+            //     let data = event.dataTransfer.getData("text");
+            //     event.listCard.appendChild(document.createElement(data));
+            //     console.log("drop")
+            // }
+
             listCard.append(h2)
             listDiv.appendChild(listCard) 
             
@@ -54,25 +70,50 @@ fetch("http://[::1]:3000/plans")
                 let deleteButton = document.createElement("button")
                 let editButton = document.createElement("button")
                 
-                
-                taskLi.setAttribute("draggable", "true")
                 h3.innerText = task.name
                 deleteButton.classList.add("delete")
                 deleteButton.innerText = "❌"
                 editButton.classList.add("edit")
                 editButton.innerText = "✏️"
                 
-                taskLi.addEventListener("ondragstart", dragTask)
                 deleteButton.addEventListener("click", deleteTask)
                 editButton.addEventListener("click", editTask)
+                
+                taskLi.classList.add("task")
+                taskLi.setAttribute("draggable", "true")
+        
+                //taskLi.classList.add("task")
+                taskLi.addEventListener("dragstart", () => {
+                    console.log("dragstart")
+                    draggedItem = taskLi
+                    setTimeout(() => {
+                        taskLi.style.display = "none"
+                    }, 0)
+                });
+        
+                taskLi.addEventListener("dragend", () => {
+                    console.log("dragend")
+                    draggedItem.style.display = "block"
+                    draggedItem = null
+                }, 0)
+
+                // taskLi.setAttribute("id", Math.random().toString(36))
+                // taskLi.addEventListener("dragstart", dragstart_handler)
+                // taskLi.addEventListener("drag", drag_handler)
+
+                // function dragstart_handler(event) {
+                //     event.dataTransfer.setData("text", event.listCard.id);
+                //     console.log("dragstart")
+                // }
+
+                // function drag_handler(event) {
+                //     event.preventDefault()
+                //     console.log("drag")
+                // }
                 
                 taskLi.append(h3, deleteButton, editButton)
                 listCard.append(taskLi)
                 
-                function dragTask(event){
-                    event.dataTranser.setData("text", event.target.id)
-                }
-
                 function deleteTask(event){
                     event.preventDefault()     
                     event.target.parentNode.remove()       
@@ -89,10 +130,9 @@ fetch("http://[::1]:3000/plans")
 
             listCard.appendChild(addButton)
         })
+
+       
     }
+    
 
-
-
-
-
-
+       

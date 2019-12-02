@@ -45,21 +45,6 @@ fetch("http://[::1]:3000/plans")
                 console.log("drop")
                 listCard.append(draggedItem)
             })
-            
-            // listCard.addEventListener("dragover", dragover_handler)
-            // listCard.addEventListener("drop", drop_handler)
-
-            // function dragover_handler(event) {
-            //     event.preventDefault();
-            //     console.log("dragover")
-            // }
-
-            // function drop_handler(event) {
-            //     event.preventDefault();
-            //     let data = event.dataTransfer.getData("text");
-            //     event.listCard.appendChild(document.createElement(data));
-            //     console.log("drop")
-            // }
 
             listCard.append(h2)
             listDiv.appendChild(listCard) 
@@ -82,7 +67,6 @@ fetch("http://[::1]:3000/plans")
                 taskLi.classList.add("task")
                 taskLi.setAttribute("draggable", "true")
         
-                //taskLi.classList.add("task")
                 taskLi.addEventListener("dragstart", () => {
                     console.log("dragstart")
                     draggedItem = taskLi
@@ -96,20 +80,6 @@ fetch("http://[::1]:3000/plans")
                     draggedItem.style.display = "block"
                     draggedItem = null
                 }, 0)
-
-                // taskLi.setAttribute("id", Math.random().toString(36))
-                // taskLi.addEventListener("dragstart", dragstart_handler)
-                // taskLi.addEventListener("drag", drag_handler)
-
-                // function dragstart_handler(event) {
-                //     event.dataTransfer.setData("text", event.listCard.id);
-                //     console.log("dragstart")
-                // }
-
-                // function drag_handler(event) {
-                //     event.preventDefault()
-                //     console.log("drag")
-                // }
                 
                 taskLi.append(h3, deleteButton, editButton)
                 listCard.append(taskLi)

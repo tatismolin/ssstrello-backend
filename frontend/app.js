@@ -1,73 +1,73 @@
 const planDiv = document.querySelector(".planDiv")
-const listsDiv = document.querySelector(".listsDiv")
+const listDiv = document.querySelector(".listDiv")
 
+listDiv.setAttribute("ondrop", "dropIt(event")
+listDiv.setAttribute("ondragover", "allowDrop(event")
 
-fetch("http://localhost:3000/plans")
+fetch("http://[::1]:3000/plans")
     .then(response => response.json())
     .then(plans => plans.map(plan => {
-        let h1 = document.createElement("h1")
+        const h1 = document.createElement("h1")
         h1.innerText = plan.name
         planDiv.appendChild(h1)
-
-        getListsForPlan(plan)
-
+        
+        addLists(plan)
     }))
-
-function getListsForPlan(plan){
-    fetch("http://localhost:3000/plan_lists")
-        .then(response => response.json())
-        .then(plan_lists => plan_lists.map(plan_list => {
-            const listDiv = document.createElement("div")
-            const listName = document.createElement("h3")
-            const buttonDiv = document.createElement("div")
-            const addButton = document.createElement("button")
-            const editButton = document.createElement("button")
-            const deleteButton = document.createElement("button")
-
-            listDiv.setAttribute("class", "listDiv")
-            buttonDiv.setAttribute("class", "buttonDiv")
-
-            listName.innerText = plan_list.list.name
-            addButton.innerText = "➕"
-            addButton.addEventListener("click", function(event){
-                fetch("http://localhost:3000/plan_lists", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"   
-                    },
-                    body: JSON.stringify({
-                        list_id: list.id
-                    })
-                })
-                .then(response => window.location = "http://localhost:3001/")
-            })
-            editButton.innerText = "✏️"
-                editButton.addEventListener("click", function(event){
-                window.location = "www.google.com"
-            })
-            deleteButton.innerText = "❌"
-            deleteButton.addEventListener("click", function(event){
-                event.target.parentNode.remove()
-                fetch(`http://localhost:3000/plan_lists/${plan_list.id}`, {
-                    method: "DELETE"
-                })
-            })
-
-            buttonDiv.append(addButton, editButton, deleteButton)
-            listDiv.append(listName, buttonDiv)
-            listsDiv.append(listDiv)
-        }))
-}
-
-function switchMenu(x) {
-    x.classList.toggle("change");
-  }
-
-
-
     
-
-
-
-
     
+    function addLists(plan){
+        plan.lists.forEach(list => {
+            let listCard = document.createElement("div")
+            let h2 = document.createElement("h2")
+            let addButton = document.createElement("button")
+            
+            h2.innerText = list.name
+            listCard.classList.add("list")
+            addButton.classList.add("add")
+            addButton.innerText = "➕ Add a new task"
+            
+            listCard.append(h2)
+            listDiv.appendChild(listCard) 
+            
+            list.tasks.map(task => {
+                let taskLi = document.createElement("li")
+                let h3 = document.createElement("h3")
+                let deleteButton = document.createElement("button")
+                let editButton = document.createElement("button")
+                
+                taskLi.setAttribute("draggable", "true")
+                h3.innerText = task.name
+                deleteButton.classList.add("delete")
+                editButton.classList.add("edit")
+                deleteButton.innerText = "❌"
+                editButton.innerText = "✏️"
+
+                editButton.addEventListener("click", (event) => {
+                    event.preventDefault()
+                    window.location.href = `task.html?id=${task.id}`
+                })
+                
+                deleteButton.addEventListener("click", (event) => { 
+                    event.preventDefault()     
+                    event.target.parentNode.remove()       
+                    fetch(`http://[::1]:3000/tasks/${task.id}`), {
+                        method: "DELETE"
+                    }
+                })
+                
+                
+                taskLi.append(h3, deleteButton, editButton)
+                listCard.append(taskLi)
+            })
+
+            listCard.append(addButton)
+        })
+    }
+
+
+    function dragEvent(event){
+        event.dataTranser.setData("text", event.target.id)
+    }
+
+
+

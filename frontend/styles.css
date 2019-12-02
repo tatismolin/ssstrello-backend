@@ -1,61 +1,93 @@
-html {
-    background-color: #ebe1dd;
+body { 
+    background: url(https://www.10wallpaper.com/wallpaper/1366x768/1107/island_beach_wallpaper_1366x768.jpg) no-repeat center center fixed; 
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+    color: #172b4d;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
 }
 
 .planDiv {
-    width: 100%;
-    margin: 10px;
-    padding: 10px;
+    background-color: hsla(0,0%,100%,.24);
+    height: auto;
+    margin: 6px;
+    padding: 6px;
 }
 
-.listsDiv {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    width: 100%;
-    margin: 10px;
-    padding: 10px;
-}
-
-.listDiv {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgb(201, 198, 198);
-    box-sizing: border-box;
-    border-radius: 10px;
-    background-color: #e3e2e2;
-    width: 20%;
-    margin: 10px;
-    padding: 10px;
-}
-
-.container {
-    display: flex;
+.list {
+    background-color: hsla(0,0%,100%,.24);
+    transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
     display: inline-block;
-    float:right;
-    cursor: pointer;
-    margin: 10px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(9,30,66,.25);
+    width: 300px;
+    height: 100%;
+    margin: 6px;
+    padding: 6px;
+}
+
+li {
+    background-color: hsla(0,0%,100%,.24);
+    transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;    border-radius: 3px;
+    box-sizing: border-box;
+    display: block;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(9,30,66,.25);
+    margin: 8px;
     padding: 10px;
+    cursor: pointer;
 }
 
-.bar1, .bar2, .bar3 {
-    width: 35px;
-    height: 5px;
-    background-color: #333;
-    margin: 6px 0;
-    transition: 0.4s;
+h1 {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+    color: #172b4d;
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 700;
+    margin: 20px;
 }
 
-.change .bar1 {
-    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-    transform: rotate(-45deg) translate(-9px, 6px);
+h2 {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+    color: #172b4d;
+    font-size: 14px;
+    line-height: 32px;
+    font-weight: 700;
+    margin-left: 20px;
+    margin-top: 4px;
 }
 
-.change .bar2 {
-    opacity: 0;
+h3 {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+    color: #172b4d;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    display: inline-block;
+    margin: 4px;
 }
 
-.change .bar3 {
-    -webkit-transform: rotate(45deg) translate(-8px, -8px);
-    transform: rotate(45deg) translate(-8px, -8px);
+.delete {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.edit {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.add {
+    background-color: transparent;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+    color: #5e6c84;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    border: none;
+    margin-left: 14px;
+    margin-bottom: 4px;
+    padding: 8px;
+    cursor: pointer;
 }

@@ -5,11 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.destroy_all
-Plan.destroy_all
-UserPlan.destroy_all
-List.destroy_all
-Task.destroy_all
+# User.destroy_all
+# Plan.destroy_all
+# UserPlan.destroy_all
+# List.destroy_all
+# Task.destroy_all
 
 
 user1 = User.create(name: "Tanya", username: "tatismolin", password: "123tasm")
@@ -21,6 +21,7 @@ plan1 = Plan.create(name: "Create A Task Management Tool")
 UserPlan.create(user_id: user1.id, plan_id: plan1.id)
 UserPlan.create(user_id: user2.id, plan_id: plan1.id)
 
+backlog = List.create(name: "Backlog", plan: plan1)
 plan1list1 = List.create(name: "To Do", plan: plan1)
 plan1list2 = List.create(name: "In Progress", plan: plan1)
 plan1list3 = List.create(name: "Done", plan: plan1)
@@ -44,5 +45,6 @@ task13 = Task.create(name: "Create BE for edit-a-task", priority: "High", list: 
 task14 = Task.create(name: "Create FE for drag-and-drop", priority: "Low", list: plan1list3)
 task15 = Task.create(name: "Create BE for drag-and-drop", priority: "Low", list: plan1list3)
 
-# task7 = Task.create(name: "Do Something Else", priority: 2, list: plan2list1)
+# task16 = Task.create(name: "Do Something Else", priority: 2, list: plan2list1)
 
+task16 = Task.create(name: "Blah", priority: "High", list: backlog)

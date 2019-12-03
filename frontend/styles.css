@@ -66,7 +66,7 @@ nav {
 
 p {
     font-family: 'Indie Flower', cursive;
-    color: rgba(0,0,0,.32);
+    color: rgba(0, 0, 0, 0.562);
     font-size: 38px;
     line-height: 32px;
     font-weight: 700;
@@ -183,7 +183,21 @@ h3 {
     left: 0;
 }
 
-.input {
+.inputName {
+    background-color: rgba(255, 255, 255, 0.685);
+    transition: background 200ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;    border-radius: 3px;
+    display: flex;
+    width: 85%;
+    justify-content: space-between;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(9,30,66,.25);
+    margin: 8px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.inputPriority {
     background-color: rgba(255, 255, 255, 0.685);
     transition: background 200ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;    border-radius: 3px;
     display: flex;

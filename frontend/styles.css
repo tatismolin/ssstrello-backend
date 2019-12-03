@@ -1,6 +1,10 @@
+*:focus {
+    outline: none;
+}
+
 body { 
     background: url("mountains.jpg") center fixed no-repeat; 
-    background-size: 100%;
+    background-size: 100% 100%;
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
     color: #172b4d;
     font-size: 14px;
@@ -8,21 +12,15 @@ body {
     font-weight: 400;
 }
 
-header {
+nav {
     background: rgba(0,0,0,.32);
-    height: 32px;
-    padding: 4px;
     box-sizing: border-box;
-    display: flex;
-    min-height: 40px;
-    justify-content: space-between;
+    height: 50px;
+    padding: 4px;
 }
 
 .planDiv {
-    background-color: rgba(255, 255, 255, 0.158);
-    height: auto;
-    margin: 6px;
-    padding: 6px;
+    padding: 0 6px;
 }
 
 .listDiv {
@@ -43,31 +41,50 @@ header {
 
 .taskCard {
     box-sizing: border-box;
+    min-height: 2rem;
 }
 
 .task {
     background-color: rgba(255, 255, 255, 0.685);
     transition: background 200ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;    border-radius: 3px;
     box-sizing: border-box;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border-radius: 3px;
     box-shadow: 0 1px 0 rgba(9,30,66,.25);
     margin: 8px;
     padding: 10px;
     cursor: pointer;
+    
 }
 
 .task:hover {
     background-color:rgba(255, 255, 255, 0.329);
 }
 
-h1 {
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
-    color: #172b4d;
-    font-size: 18px;
+p {
+    font-family: 'Indie Flower', cursive;
+    color: rgba(0,0,0,.32);
+    font-size: 38px;
     line-height: 32px;
     font-weight: 700;
-    margin: 20px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-left: 26px;
+    text-align: center;
+
+}
+
+h1 {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+    color: white;
+    font-size: 28px;
+    line-height: 32px;
+    font-weight: 500;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-left: 26px;
 }
 
 h2 {
@@ -76,7 +93,7 @@ h2 {
     font-size: 14px;
     line-height: 32px;
     font-weight: 700;
-    margin-left: 20px;
+    margin-left: 22px;
     margin-top: 4px;
 }
 
@@ -86,19 +103,26 @@ h3 {
     font-size: 14px;
     line-height: 20px;
     font-weight: 400;
-    display: inline-block;
-    margin: 4px;
+    margin: 4px;    
+}
+
+.buttons {
+    display: flex;
 }
 
 .delete {
-    display: inline-block;
+    background-color: transparent;
+    border: none;
     cursor: pointer;
+    size: 14px;
 }
 
-.edit {
-    display: inline-block;
+/* .edit {
+    background-color: transparent;
+    border: none;
     cursor: pointer;
-}
+    size: 14px;
+} */
 
 .add {
     background-color: transparent;
@@ -110,6 +134,37 @@ h3 {
     border: none;
     margin-left: 14px;
     margin-bottom: 4px;
-    padding: 8px;
+    padding: 6px;
     cursor: pointer;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+.tooltip .tooltiptext {
+    width: 120px;
+    background-color: rgba(0,0,0,.32);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+  
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip:hover:after {
+    display:none;
+    
 }

@@ -1,103 +1,133 @@
-const planDiv = document.querySelector(".planDiv")
-const listDiv = document.querySelector(".listDiv")
+const planDiv = document.querySelector(".planDiv");
+const listDiv = document.querySelector(".listDiv");
+const navBar = document.querySelector("nav");
+let draggedItem = null; //variable for drag-and-drop functionality
 
 fetch("http://[::1]:3000/plans")
-.then(response => response.json())
-.then(plans => {plans.map(plan => {
-    let h1 = document.createElement("h1")
-    h1.innerText = plan.name
-    planDiv.appendChild(h1)
-    
-    addLists(plan)
-})})
+    .then(response => response.json())
+    .then(plans => {plans.map(plan => {
+        let h1 = document.createElement("h1");
+        let p = document.createElement("p");
 
-let draggedItem = null;
+        h1.innerText = plan.name;
+        p.innerText = "Ssstrello";
+
+        planDiv.appendChild(h1);
+        navBar.appendChild(p);
+
+        addLists(plan);
+    })});
+
 function addLists(plan){
     plan.lists.forEach(list => {
-        let listCard = document.createElement("div")
-        let h2 = document.createElement("h2")
-        let addButton = document.createElement("button")
-        let taskDiv = document.createElement("div")
+        let listCard = document.createElement("div");
+        let taskDiv = document.createElement("div");
+        let h2 = document.createElement("h2");
+        let addButton = document.createElement("button");
+            
+        listCard.classList.add("list");
+        taskDiv.classList.add("taskCard");
+        taskDiv.dataset.listId = list.id; //matches FE with BE
+        h2.innerText = list.name;
+        addButton.classList.add("add");
+        addButton.innerText = "➕ Add a new task";
         
-        // listCard.setAttribute("id", Math.random().toString(36))
-        
-        listCard.classList.add("list")
-        h2.innerText = list.name
-        addButton.classList.add("add")
-        taskDiv.classList.add("taskCard")
-        addButton.innerText = "➕ Add a new task"
-        
-        addButton.addEventListener("click", addTask) 
-        
-        function addTask(event){
-            event.preventDefault()
-            window.location.href = "addTask.html"
-        }
+        addButton.addEventListener("click", addTask) ;
         
         //dragging functionality on listCard
         taskDiv.addEventListener("dragover", (event) => {
-            event.preventDefault()
-        })
+            event.preventDefault();
+        });
         
         taskDiv.addEventListener("dragenter", (event) => {
-            event.preventDefault()
-        })
+            event.preventDefault();
+        });
         
         taskDiv.addEventListener("drop", (event) => {
-            taskDiv.append(draggedItem)
-        })
+            event.preventDefault();
+            taskDiv.prepend(draggedItem);
+        });
         
-        listCard.prepend(h2)
-        listDiv.appendChild(listCard) 
+        listCard.prepend(h2);
+        listDiv.appendChild(listCard);
+
+        function addTask(event){
+            event.preventDefault();
+            window.location.href = "addTask.html";
+        };
         
         list.tasks.forEach(task => {
-            let taskLi = document.createElement("li")
-            let h3 = document.createElement("h3")
-            let deleteButton = document.createElement("button")
-            let editButton = document.createElement("button")
+            let taskLi = document.createElement("li");
+            let h3 = document.createElement("h3");
+            let tp = document.createElement("div");
+            let toolTip = document.createElement("div");
+            let buttonDiv = document.createElement("div");
+            let deleteButton = document.createElement("button");
             
-            taskLi.classList.add("task")
-            taskLi.setAttribute("draggable", "true")
-            h3.innerText = task.name
-            deleteButton.classList.add("delete")
-            deleteButton.innerText = "✖️"
-            editButton.classList.add("edit")
-            editButton.innerText = "🖋"
+            taskLi.classList.add("task");
+            taskLi.setAttribute("draggable", "true");
+            h3.setAttribute("contenteditable", "true");
+            h3.innerText = task.name;
+            tp.classList.add("tooltip");
+            toolTip.classList.add("tooltiptext");
+            toolTip.innerText = `${task.priority} Priority`;
+            buttonDiv.classList.add("buttons");
+            deleteButton.classList.add("delete");
+            deleteButton.innerText = "✖️";
             
-            deleteButton.addEventListener("click", deleteTask)
-            editButton.addEventListener("click", editTask)
-            
+            deleteButton.addEventListener("click", deleteTask);
+
+            h3.addEventListener("input", (event) => {
+                event.preventDefault();
+                fetch(`http://[::1]:3000/tasks/${task.id}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify({
+                        name: event.target.innerText
+                    })
+                });
+            });
+
             //dragging functionality on taskList
             taskLi.addEventListener("dragstart", () => {
-                draggedItem = taskLi
+                draggedItem = taskLi;
                 setTimeout(() => {
-                    taskLi.style.display = "none"
-                }, 0)
+                    taskLi.style.display = "none";
+                }, 0);
             });
             
-            taskLi.addEventListener("dragend", () => {
-                draggedItem.style.display = "block"
-                draggedItem = null
-            }, 0)
+            taskLi.addEventListener("dragend", (event) => {
+                draggedItem.style.display = "block";
+                draggedItem = null;
+                fetch(`http://[::1]:3000/tasks/${task.id}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify({
+                        list_id: event.target.parentNode.dataset.listId
+                    })
+                    });
+            }, 0);
             
-            taskLi.append(h3, editButton, deleteButton)
-            taskDiv.appendChild(taskLi)
+            tp.appendChild(toolTip);
+            buttonDiv.appendChild(deleteButton);
+            taskLi.append(h3, tp, buttonDiv);
+            taskDiv.appendChild(taskLi);
             
             function deleteTask(event){
-                event.target.parentNode.remove()       
-                fetch(`http://localhost:3000/tasks/${task.id}`, {
+                event.target.parentNode.parentNode.remove();
+                fetch(`http://[::1]:3000/tasks/${task.id}`, {
                     method: "DELETE"
                 })
-            }   
-            
-            function editTask(event){
-                event.preventDefault()
-                window.location.href = `task.html?id=${task.id}`
-            }
-        })
-        listCard.appendChild(taskDiv)
-        listCard.appendChild(addButton)
-    })
+            };
+        });
+
+        listCard.appendChild(taskDiv);
+        listCard.appendChild(addButton);
+    });
 }
-
-

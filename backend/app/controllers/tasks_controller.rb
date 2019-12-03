@@ -31,7 +31,7 @@ class TasksController < ApplicationController
     end
 
     def allowed_params
-        params.require(:task).permit(:name, :priority)
+        params.require(:task).permit(:name, :priority, :list_id)
     end
 
 end

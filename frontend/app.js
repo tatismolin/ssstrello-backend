@@ -24,6 +24,9 @@ function addLists(plan){
         let taskDiv = document.createElement("div");
         let h2 = document.createElement("h2");
         let addButton = document.createElement("button");
+        let addForm = document.querySelector(".addForm")
+        let closeButton = document.querySelector(".closeButton")
+
             
         listCard.classList.add("list");
         taskDiv.classList.add("taskCard");
@@ -32,7 +35,8 @@ function addLists(plan){
         addButton.classList.add("add");
         addButton.innerText = "➕ Add a new task";
         
-        addButton.addEventListener("click", addTask) ;
+        addButton.addEventListener("click", openForm);
+        closeButton.addEventListener("click", closeForm)
         
         //dragging functionality on listCard
         taskDiv.addEventListener("dragover", (event) => {
@@ -51,11 +55,16 @@ function addLists(plan){
         listCard.prepend(h2);
         listDiv.appendChild(listCard);
 
-        function addTask(event){
+        function openForm(event) {
             event.preventDefault();
-            window.location.href = "addTask.html";
+            addForm.style.display = "block";
         };
-        
+          
+        function closeForm(event) {
+            event.preventDefault();
+            addForm.style.display = "none";
+        };
+    
         list.tasks.forEach(task => {
             let taskLi = document.createElement("li");
             let h3 = document.createElement("h3");
@@ -131,3 +140,5 @@ function addLists(plan){
         listCard.appendChild(addButton);
     });
 }
+
+

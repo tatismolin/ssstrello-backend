@@ -8,7 +8,7 @@ body {
 }
 
 .navDiv {
-    background: rgba(0,0,0,.32);
+    background: rgba(0,0,0,.2);
     box-sizing: border-box;
     height: 50px;
     padding: 4px;
@@ -187,12 +187,21 @@ body {
     resize: vertical;
 }
 
+.addTaskFormInputName:hover {
+    background-color:  rgba(255, 255, 255, 0.685)
+}
+
 .addTaskFormInputPriority {
-    width: 93%;
+    width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
+    height: 40px;
+}
+
+.addTaskFormInputPriority:hover {
+    background-color:  rgba(255, 255, 255, 0.685)
 }
   
 .addTaskFormLabelName {
@@ -245,6 +254,8 @@ body {
     height: 100%;
     display: flex;
     justify-content: flex-end;
+    position: sticky;
+    bottom: 0;
 }
 
 .dimmer {

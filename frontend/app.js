@@ -248,15 +248,23 @@ function addExternalApiFetch(){
     })
     .then(response => response.json())
     .then(result => {
-        let randomQuote = document.createElement("h1");
+        const randomQuote = document.createElement("h1");
         randomQuote.classList.add("randomQuote");
         footDiv.classList.add("dimmer");
         
         randomQuote.innerText = result[1];
     
-        randomQuote.style.display ="none";
         randomQuote.style.display = "flex";
     
         footDiv.prepend(randomQuote);
     })
 };
+
+listDiv.addEventListener("click", (event) => {
+    event.preventDefault();
+    const randomQuote = document.querySelector(".randomQuote");
+
+    footDiv.classList.remove("dimmer");
+    randomQuote.remove();
+});
+

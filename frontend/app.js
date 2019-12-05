@@ -1,7 +1,8 @@
-const plansURL = "http://[::1]:3000/plans"
+const plansURL = "http://[::1]:3000/plans";
 const navDiv = document.querySelector(".navDiv");
 const planDiv = document.querySelector(".planDiv");
 const listDiv = document.querySelector(".listDiv");
+const footDiv = document.querySelector(".footDiv");
 let draggedItem = null; //variable for drag-and-drop functionality.
 
 fetch(plansURL)
@@ -71,7 +72,7 @@ function addTaskCard(list, taskDiv){
         const taskName = document.createElement("h3");
         
         taskCard.classList.add("taskCard");
-        taskName.classList.add("taskName")
+        taskName.classList.add("taskName");
         
         taskCard.setAttribute("draggable", "true");
         taskName.setAttribute("contenteditable", "true");
@@ -165,7 +166,7 @@ function dragTask(task, taskCard){
     };
     
     function endDrag(event){
-        draggedItem.style.display = "block";
+        draggedItem.style.display = "flex";
         draggedItem = null;
         fetch(`http://[::1]:3000/tasks/${task.id}`, {
             method: "PATCH",
@@ -229,4 +230,33 @@ function addNewTaskFetch(addTaskFormInputName, addTaskFormInputPriority){
             list_id: event.target.parentNode.id
         })
     });
+};
+
+//external API functionality.    
+const tapMe = document.querySelector(".tapMe");
+
+tapMe.addEventListener("click", addExternalApiFetch);
+
+function addExternalApiFetch(){
+    event.preventDefault();
+    fetch("https://hargrimm-wikihow-v1.p.rapidapi.com/steps?count=3", {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "hargrimm-wikihow-v1.p.rapidapi.com",
+            "x-rapidapi-key": "c5d7d7387bmshc602216bb13e357p1052bcjsn2580862765fa"
+        }
+    })
+    .then(response => response.json())
+    .then(result => {
+        let randomQuote = document.createElement("h1");
+        randomQuote.classList.add("randomQuote");
+        footDiv.classList.add("dimmer");
+        
+        randomQuote.innerText = result[1];
+    
+        randomQuote.style.display ="none";
+        randomQuote.style.display = "flex";
+    
+        footDiv.prepend(randomQuote);
+    })
 };

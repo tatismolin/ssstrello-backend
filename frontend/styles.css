@@ -5,11 +5,6 @@
 body { 
     background: url("mountains.jpg") center fixed no-repeat; 
     background-size: 100% 100%;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
-    color: #172b4d;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 400;
 }
 
 .navDiv {
@@ -18,6 +13,8 @@ body {
     height: 50px;
     padding: 4px;
     margin-top: -10px;
+    margin-left: -10px;
+    margin-right: -10px;
 }
 
 .appName {
@@ -26,14 +23,10 @@ body {
     font-size: 38px;
     line-height: 32px;
     font-weight: 700;
+    text-align: center;
     margin-top: 6px;
     margin-bottom: 6px;
     margin-left: 26px;
-    text-align: center;
-}
-
-.planDiv {
-    padding: 0 6px;
 }
 
 .planName {
@@ -52,7 +45,7 @@ body {
 }
 
 .listCard {
-    background-color: rgba(255, 255, 255, 0.555);
+    background-color: #d3d4d8a6;
     transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
     box-sizing: border-box;
     border-radius: 3px;
@@ -69,8 +62,8 @@ body {
     font-size: 14px;
     line-height: 32px;
     font-weight: 700;
-    margin-left: 22px;
     margin-top: 4px;
+    margin-left: 22px;
 }
 
 .taskDiv {
@@ -81,10 +74,9 @@ body {
 .taskCard {
     background-color: rgba(255, 255, 255, 0.685);
     transition: background 200ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;    border-radius: 3px;
-    box-sizing: border-box;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     border-radius: 3px;
     box-shadow: 0 1px 0 rgba(9,30,66,.25);
     margin: 8px;
@@ -113,7 +105,6 @@ body {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    size: 14px;
 }
 
 .listAddButton {
@@ -132,23 +123,21 @@ body {
 
 .toolTip {
     position: relative;
-    display: inline-block;
   }
   
 .toolTip .toolTipText {
-    width: 100px;
     background-color: rgba(0,0,0,.32);
     color: #fff;
+    opacity: 0;
+    transition: opacity 1s;
     text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
     position: absolute;
-    z-index: 1;
+    border-radius: 6px;
+    width: 100px;
     bottom: 100%;
     left: 50%;
     margin-left: -60px;
-    opacity: 0;
-    transition: opacity 1s;
+    padding: 5px 0;
 }
   
 .toolTip:hover .toolTipText {
@@ -158,95 +147,81 @@ body {
 
 .toolTip:hover:after {
     display:none;
-    
 }
 
 .addTaskForm {
-    display: none;
-    background-color: rgba(200, 200, 200, 1);
-    transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
     box-sizing: border-box;
     border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 30px;
+    display: none;
+    transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
     box-shadow: 0 1px 0 rgba(9,30,66,.25);
-    height: max-content;
-    width: 300px;
-    margin: 6px;
-    padding: 6px;
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
     color: #172b4d;
     font-size: 14px;
-    display: none;
+    margin:0 auto;
     position: fixed;
-    bottom: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    height:380px;
+    width:440px;
+    z-index:100;
+    outline: 9999px solid rgba(0,0,0,0.5);
+    margin-left: -150px;
+    margin-top: -100px;
+}
+
+.addTaskFormTitle {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+    color: #172b4d;
+    font-size: 28px;
+    line-height: 32px;
+    font-weight: 500;
+    margin-top: 6px;
 }
 
 .addTaskFormInputName {
-    background-color: rgba(255, 255, 255, 0.685);
-    transition: background 200ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;    border-radius: 3px;
-    display: flex;
-    width: 85%;
-    justify-content: space-between;
-    border-radius: 3px;
-    box-shadow: 0 1px 0 rgba(9,30,66,.25);
-    margin: 8px;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 3px;
+    width: 93%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
 }
 
 .addTaskFormInputPriority {
-    background-color: rgba(255, 255, 255, 0.685);
-    transition: background 200ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;    border-radius: 3px;
-    display: flex;
-    width: 85%;
-    justify-content: space-between;
+    width: 93%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+  
+.addTaskFormLabelName {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+  
+.addTaskFormAddButton {
+    background-color: rgba(108, 121, 145, 0.144);
+    color: #172b4d;
+    font-size: 18px;
+    width: 100%;
+    margin-top: 40px;
+    padding: 14px;
     border-radius: 3px;
-    box-shadow: 0 1px 0 rgba(9,30,66,.25);
-    margin: 8px;
-    padding: 10px;
     cursor: pointer;
-    border-radius: 3px;
+}
+  
+.addTaskFormAddButton:hover {
+    background-color: rgba(9, 30, 66, 0.144);
 }
 
 .addTaskFormCloseButton {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    size: 14px;
     position: absolute;
     top: 10px;
     right: 10px;
 }
-
-.addTaskFormAddButton {
-    background-color: rgba(255, 255, 255, 0.527);
-    transition: background 200ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;    border-radius: 3px;
-    color: #5e6c84;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 400;
-    border: none;
-    margin: 8px;
-    padding: 8px;
-    cursor: pointer;
-    border-radius: 3px;
-    width: 93%;
-}
-
-.addTaskFormAddButton:hover {
-    background-color:rgba(255, 255, 255, 0.726);
-}
-
-/* .addTaskFormInputName {
-    margin: 12px;
-    font-weight: 500;
-}
-
-.addTaskFormName {
-    color: #172b4d;
-    margin-top: 18px;
-    margin-left: 14px;
-    margin-bottom: 20px;
-    font-weight: 450;
-} */

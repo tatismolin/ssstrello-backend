@@ -1,6 +1,6 @@
 # Ssstrello
 
-# Simple Task Management Tool for tracking progress on a Project. 
+**Simple Task Management Tool for tracking progress on a Project.**
 
 Project is being displayed on a page with multiple lists attached to it.
 To Do, In Progress, Done and Backlog lists keep progress on tasks and organize them based on status.
@@ -9,8 +9,7 @@ Each Task has a name, that can be edited inline and priority, that is displayed 
 
 ![background](/Ssstrello.png)
 
-**Demo:**
-- [YouTube]()
+**Demo:** [YouTube]()
 
 **Stack:**
 > - Ruby on Rails;
@@ -18,7 +17,7 @@ Each Task has a name, that can be edited inline and priority, that is displayed 
 > - HTML/CSS.
 
 **API:**
-- [WikiHow API](https://rapidapi.com/hargrimm/api/wikihow)
+> - [WikiHow API](https://rapidapi.com/hargrimm/api/wikihow)
 
 **How to run instructions:**
 1. Fork and clone this Project's GitHub repository.  
@@ -32,7 +31,7 @@ Each Task has a name, that can be edited inline and priority, that is displayed 
 * Run the command 'lite-server' to start frontend server.
 
 
-> **Future features:**
+**Future features:**
 - [ ] login functionality;
 - [ ] multiple users;
 - [ ] multiple plans;
@@ -42,4 +41,4 @@ Each Task has a name, that can be edited inline and priority, that is displayed 
 - [ ] filter functionality.
 
 
-### Created by Tatiana Smolin as part of a MOD3 solo Project at Flatiron School.
+**Created by Tatiana Smolin as part of a MOD3 solo Project at Flatiron School.**

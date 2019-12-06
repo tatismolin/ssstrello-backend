@@ -76,6 +76,8 @@ function addTaskCard(list, taskDiv){
         
         taskCard.setAttribute("draggable", "true");
         taskName.setAttribute("contenteditable", "true");
+
+        taskCard.dataset.taskId = task.id;
         
         taskName.innerText = task.name;
         
@@ -125,13 +127,13 @@ function addTaskButtons(task, taskCard){
     
     taskDeleteButton.innerText = "✖️";
 
-    taskDeleteButton.addEventListener("click", deleteTask);
-    function deleteTask(event){
-        event.target.parentNode.parentNode.remove();
-        fetch(`http://[::1]:3000/tasks/${task.id}`, {
-            method: "DELETE"
-        });
-    };
+    // taskDeleteButton.addEventListener("click", deleteTask);
+    // function deleteTask(event){
+    //     event.target.parentNode.parentNode.remove();
+    //     fetch(`http://[::1]:3000/tasks/${task.id}`, {
+    //         method: "DELETE"
+    //     });
+    // };
 
     taskButtonDiv.appendChild(taskDeleteButton);
     taskCard.append(taskButtonDiv);
@@ -260,11 +262,27 @@ function addExternalApiFetch(){
     })
 };
 
-listDiv.addEventListener("click", (event) => {
+listDiv.addEventListener("click", handleClick);
+
+function handleClick(event){
     event.preventDefault();
     const randomQuote = document.querySelector(".randomQuote");
 
     footDiv.classList.remove("dimmer");
-    randomQuote.remove();
-});
+    if (randomQuote){
+        randomQuote.remove();
+    };
+    // console.log(event.target);
 
+    if (event.target.classList.contains("taskDeleteButton")){
+        console.log(event.target.parentNode.parentNode);
+        deleteTask(event.target.parentNode.parentNode);
+    }
+};
+
+function deleteTask(taskCard){
+    fetch(`http://[::1]:3000/tasks/${taskCard.dataset.taskId}`, {
+        method: "DELETE"
+    });
+    taskCard.remove();
+};

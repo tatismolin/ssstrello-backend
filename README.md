@@ -27,7 +27,7 @@ Each Task has a name, that can be edited inline and priority, that is displayed 
 * _Run the command 'rails db:migrate' which will create the database;_
 * _Run the command 'rails db:seed' which will populate the database with existing user/plan/lists/tasks data;_
 * _Run the command 'rails s' to start backend server;_
-3. Open a separate terminal window/tab and navigate into the frontend folder:
+4. Open a separate terminal window/tab and navigate into the frontend folder:
 * _Run the command 'lite-server' to start frontend server._
 
 

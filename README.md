@@ -1,6 +1,6 @@
 # Ssstrello
 
-## Simple Task Management Tool for tracking progress on a Project. 
+# Simple Task Management Tool for tracking progress on a Project. 
 
 Project is being displayed on a page with multiple lists attached to it.
 To Do, In Progress, Done and Backlog lists keep progress on tasks and organize them based on status.

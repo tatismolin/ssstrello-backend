@@ -23,12 +23,12 @@ Each Task has a name, that can be edited inline and priority, that is displayed 
 1. Fork and clone this Project's GitHub repository.  
 2. Have current version of Ruby, Rails and Lite Server installed.
 3. Open a terminal and navigate into the backend folder:
-> * Install required gems (listed in Gemfile) by running the command 'bundle install';
-> * Run the command 'rails db:migrate' which will create the database;
-> * Run the command 'rails db:seed' which will populate the database with existing user/plan/lists/tasks data;
-> * Run the command 'rails s' to start backend server;
+* _Install required gems (listed in Gemfile) by running the command 'bundle install';_
+* _Run the command 'rails db:migrate' which will create the database;_
+* _Run the command 'rails db:seed' which will populate the database with existing user/plan/lists/tasks data;_
+* _Run the command 'rails s' to start backend server;_
 3. Open a separate terminal window/tab and navigate into the frontend folder:
-> * Run the command 'lite-server' to start frontend server.
+* _Run the command 'lite-server' to start frontend server._
 
 
 **Future features:**

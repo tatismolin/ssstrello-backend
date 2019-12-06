@@ -10,7 +10,7 @@ Each Task has a name, that can be edited inline and priority, that is displayed 
 ![background](/Ssstrello.png)
 
 **Demo:**
-[YouTube] ()
+[YouTube]()
 
 **Stack:**
 > - Ruby on Rails;
@@ -18,7 +18,7 @@ Each Task has a name, that can be edited inline and priority, that is displayed 
 > - HTML/CSS.
 
 **API:**
-- [WikiHow API] (https://rapidapi.com/hargrimm/api/wikihow)
+- [WikiHow API](https://rapidapi.com/hargrimm/api/wikihow)
 
 **How to run instructions:**
 1. Fork and clone this Project's GitHub repository.  

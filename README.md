@@ -9,7 +9,7 @@ Each Task has a name, that can be edited inline and priority, that is displayed 
 
 ![background](/Ssstrello.png)
 
-**Demo:** [YouTube]()
+**Demo:** [YouTube](https://www.youtube.com/watch?v=o4hqKYVbbqc)
 
 **Stack:**
 > - Ruby on Rails;

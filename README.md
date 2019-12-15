@@ -41,4 +41,5 @@ Each Task has a name, that can be edited inline and priority, that is displayed 
 - [ ] filter functionality.
 
 
+**Ssstrello is a clone of a Trello App and was created for educational purposes only.**
 **Created by Tatiana Smolin as part of a MOD3 solo Project at Flatiron School.**

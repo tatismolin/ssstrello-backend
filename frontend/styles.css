@@ -51,19 +51,25 @@ body {
     border-radius: 3px;
     box-shadow: 0 1px 0 rgba(9,30,66,.25);
     height: max-content;
-    width: 300px;
+    width: 20%;
     margin: 6px;
     padding: 6px;
 }
 
-.listName {
+.listName, .listDeleteButton {
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
     color: #172b4d;
     font-size: 14px;
     line-height: 32px;
     font-weight: 700;
-    margin-top: 4px;
     margin-left: 22px;
+    margin-top: 4px;
+}
+
+.temp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .taskDiv {
@@ -101,13 +107,13 @@ body {
     display: flex;
 }
 
-.taskDeleteButton {
+.taskDeleteButton, .listDeleteButton {
     background-color: transparent;
     border: none;
     cursor: pointer;
 }
 
-.listAddButton {
+.listAddButton, .planAddButton {
     background-color: transparent;
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
     color: #5e6c84;
@@ -262,4 +268,77 @@ body {
     z-index:300;
     outline: 9999px solid rgba(0, 0, 0, 0.692);
     background-color: rgba(0, 0, 0, 0.692);;
+}
+
+
+.addListForm {
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: #e4e1e1;
+    padding: 30px;
+    display: none;
+    transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
+    box-shadow: 0 1px 0 rgba(9,30,66,.25);
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+    color: #172b4d;
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height:320px;
+    width:440px;
+    z-index:100;
+    outline: 9999px solid rgba(0, 0, 0, 0.692);
+}
+
+.addListFormTitle {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+    color: #172b4d;
+    font-size: 28px;
+    line-height: 32px;
+    font-weight: 500;
+    margin-top: 6px;
+}
+
+.addListFormInputName {
+    width: 93%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.addListFormInputName:hover {
+    background-color:  rgba(255, 255, 255, 0.685)
+}
+
+
+.addListFormLabelName {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+  
+.addListFormAddButton {
+    background-color: rgba(108, 121, 145, 0.144);
+    color: #172b4d;
+    font-size: 18px;
+    width: 100%;
+    margin-top: 50px;
+    padding: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+  
+.addListFormAddButton:hover {
+    background-color: rgba(9, 30, 66, 0.144);
+}
+
+.addListFormCloseButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }

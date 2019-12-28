@@ -8,7 +8,7 @@ class ListsController < ApplicationController
     end
 
     def create
-        @list.create(allowed_params)
+        @list = List.create(allowed_params)
         render json: @list
     end
 

@@ -46,7 +46,7 @@ function addList(){
     planAddButton.addEventListener("click", openAddListForm);
 
     listCard.appendChild(planAddButton);
-    listDiv.appendChild(listCard)
+    listDiv.appendChild(listCard);
 }
 
 function addLists(plan){

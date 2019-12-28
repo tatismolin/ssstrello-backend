@@ -23,33 +23,59 @@ function getPlan(plans){
 
         appName.innerText = "Ssstrello";
         planName.innerText = plan.name;
+
+        listDiv.dataset.planId = plan.id;
         
         addLists(plan);
-
+        addList();
+        
         navDiv.appendChild(appName);
         planDiv.appendChild(planName);
     });
 };
 
+function addList(){
+    const listCard = document.createElement("div");
+    const planAddButton = document.createElement("button");
+
+    listCard.classList.add("listCard");
+    planAddButton.classList.add("planAddButton");
+
+    planAddButton.innerText = "➕ Add a new List";
+        
+    planAddButton.addEventListener("click", openAddListForm);
+
+    listCard.appendChild(planAddButton);
+    listDiv.appendChild(listCard);
+}
+
 function addLists(plan){
     plan.lists.forEach(list => {
         const listCard = document.createElement("div");
+        const temp = document.createElement("div");
         const listName = document.createElement("h2");
         const listAddButton = document.createElement("button");
+        const listDeleteButton = document.createElement("button");
 
+        temp.classList.add("temp")
         listCard.classList.add("listCard");
         listName.classList.add("listName");
         listAddButton.classList.add("listAddButton");
+        listDeleteButton.classList.add("listDeleteButton");
 
         listName.innerText = list.name;
-        listAddButton.innerText = "➕ Add a new task";
-        
+        listAddButton.innerText = "➕ Add a new task";  
+        listDeleteButton.innerText = "✖️";  
+
+        listCard.dataset.listId = list.id;
+
         addTaskDiv(list, listCard);
         
         listAddButton.addEventListener("click", openAddTaskForm);
         
-        listCard.prepend(listName);
-        listDiv.appendChild(listCard);
+        temp.prepend(listName, listDeleteButton);
+        listCard.prepend(temp);
+        listDiv.prepend(listCard);
         listCard.appendChild(listAddButton);
     });
 };
@@ -78,7 +104,7 @@ function addTaskCard(list, taskDiv){
         taskName.setAttribute("contenteditable", "true");
 
         taskCard.dataset.taskId = task.id;
-        
+
         taskName.innerText = task.name;
         
         addToolTip(task, taskCard);
@@ -127,14 +153,6 @@ function addTaskButtons(task, taskCard){
     
     taskDeleteButton.innerText = "✖️";
 
-    // taskDeleteButton.addEventListener("click", deleteTask);
-    // function deleteTask(event){
-    //     event.target.parentNode.parentNode.remove();
-    //     fetch(`http://[::1]:3000/tasks/${task.id}`, {
-    //         method: "DELETE"
-    //     });
-    // };
-
     taskButtonDiv.appendChild(taskDeleteButton);
     taskCard.append(taskButtonDiv);
 };
@@ -181,6 +199,55 @@ function dragTask(task, taskCard){
             })
         }, 0);
     };
+};
+
+//addListForm functionality.
+const addListForm = document.querySelector(".addListForm");
+const addListFormInputName = document.querySelector(".addListFormInputName");
+const addListFormAddButton = document.querySelector(".addListFormAddButton");
+const addListFormCloseButton = document.querySelector(".addListFormCloseButton");
+
+addListFormAddButton.addEventListener("click", addNewList);
+addListFormCloseButton.addEventListener("click", closeAddListForm);
+
+function openAddListForm(event) {
+    event.preventDefault();
+    addListForm.style.display = "block";
+};
+
+function closeAddListForm(event) {
+    event.preventDefault();
+    addListForm.style.display = "none";
+};
+
+function addNewList() {
+    const listCard = document.createElement("div");
+    const listName = document.createElement("h2");
+
+    listCard.classList.add("listCard");
+    listName.classList.add("listName");
+
+    listName.innerText = addListFormInputName.value;
+
+    listCard.append(listName);
+    listDiv.append(listCard)
+
+    addNewListFetch(addListFormInputName);
+    console.log(listCard)
+}
+
+function addNewListFetch(addListFormInputName){
+    fetch("http://localhost:3000/lists/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            name: addListFormInputName.value,
+            plan_id: 2
+        })
+    });
 };
 
 //addTaskForm functionality.
@@ -262,6 +329,7 @@ function addExternalApiFetch(){
     })
 };
 
+//events deligation.
 listDiv.addEventListener("click", handleClick);
 
 function handleClick(event){
@@ -272,11 +340,13 @@ function handleClick(event){
     if (randomQuote){
         randomQuote.remove();
     };
-    // console.log(event.target);
 
     if (event.target.classList.contains("taskDeleteButton")){
-        console.log(event.target.parentNode.parentNode);
         deleteTask(event.target.parentNode.parentNode);
+    };
+
+    if (event.target.classList.contains("listDeleteButton")){
+        deleteList(event.target.parentNode.parentNode);
     }
 };
 
@@ -285,4 +355,11 @@ function deleteTask(taskCard){
         method: "DELETE"
     });
     taskCard.remove();
+};
+
+function deleteList(listCard){
+    fetch(`http://[::1]:3000/lists/${listCard.dataset.listId}`, {
+        method: "DELETE"
+    });
+    listCard.remove();
 };

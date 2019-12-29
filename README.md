@@ -7,7 +7,7 @@ To Do, In Progress, Done and Backlog lists keep progress on tasks and organize t
 Tasks can be dragged and dropped between the lists, edited and deleted. New task can be created on each list.
 Each Task has a name, that can be edited inline and priority, that is displayed in a tooltip when hovering over the task name.
 
-![background](/Ssstrello.png)
+![background](/ssstrello.png)
 
 **Demo:** [YouTube](https://www.youtube.com/watch?v=o4hqKYVbbqc)
 

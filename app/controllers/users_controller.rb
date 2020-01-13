@@ -9,7 +9,11 @@ before_action :find_user, only: [:show, :update, :destroy]
 
     def create
         @user = User.create(allowed_params)
-        render json: @user
+        if @user.save
+            render status: :created
+        else
+            render json: {error: "Bad user"}, status: :bad_request
+        end
     end
 
     def show
@@ -31,7 +35,7 @@ before_action :find_user, only: [:show, :update, :destroy]
     end
 
     def allowed_params
-        params.require(:user).permit(:name, :username, :password)
+        params.permit(:username, :password)
     end
 
 end
